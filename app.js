@@ -1,16 +1,24 @@
+//Comando que garantisa de que el documeto HTML ya ha sido cargado
 document.addEventListener("DOMContentLoaded", function(){
-
 
 
 //Imprime un mensaje de bienvenida en la consola
 console.log("Sistema EBAC de Registro de Alumnos");
 
+//Se crean variales que hacen referencia a los inputs del documento de HTML
 var form = document.getElementById("registration-form");
 var addButton = document.getElementById("add-button");
 var consultButton = document.getElementById("consult-button");
 var deleteButton = document.getElementById("delete-button");
 
+//Se definen comandos de lo que haran los botones cuando se interactua con ellos
 form.addEventListener("submit",incluir);
+
+form.style.display="none";
+
+addButton.addEventListener("click", function(event){
+  form.style.display = "flex";
+})
 
 consultButton.addEventListener("click",consultar);
 
@@ -29,14 +37,17 @@ var registro = [
 ];
 
 //Funcion que permite agregar un nuevo alumno al arreglo de registro
-function incluir(){                 
+function incluir(event){   
+  
+  //Comando para manejar los evetos de la informacion de los nuevos alumnos
+  event.preventDefault();
 
     //Se le solicita informacion al usuario para el registro de un nuevo alumno
-    var nombre = document.getElementById("name-input"); 
-    var zonaResidencia = document.getElementById("locality-input");
-    var edad = document.getElementById("age-input");
-    var nombrePrograma = document.getElementById("course-input");
-    var email = document.getElementById("email-input");
+    var nombre = document.getElementById("name-input").value; 
+    var zonaResidencia = document.getElementById("locality-input").value;
+    var edad = document.getElementById("age-input").value;
+    var nombrePrograma = document.getElementById("course-input").value;
+    var email = document.getElementById("email-input").value;
 
     //Crea un objeto que se llama nuevoAlumno con los datos ingresados
     var nuevoAlumno = {nombre: nombre, edad: edad, zonaResidencia: zonaResidencia, nombrePrograma: nombrePrograma, email: email};
@@ -44,6 +55,14 @@ function incluir(){
     //Agrega la informacion nuevoAlumno al arreglo
     registro.push(nuevoAlumno);
 
+    var nombre = document.getElementById("name-input").value = ""; 
+    var zonaResidencia = document.getElementById("locality-input").value = "";
+    var edad = document.getElementById("age-input").value = "";
+    var nombrePrograma = document.getElementById("course-input").value = "";
+    var email = document.getElementById("email-input").value = "";
+    
+    //Comando la hacer que el formulario desaparesca
+    form.style.display = "none";
 }
 
 //Funcion para consultar los registros de los alumnos
@@ -59,6 +78,8 @@ function consultar(){
         ///console.log("Nombre del programa: " + registro[i].nombrePrograma);
         ///console.log("Email: " + registro[i].email);
       ///};
+
+      //Imprime los datos guardados de los alumnos
       console.table(registro);
 
 }
@@ -78,30 +99,25 @@ function eliminarAlumno(){
 //do{
 
     //Variable que toma la eleccion del usuario para ejecutar la funcion indicada
-    var opcion = prompt("Seleccione una opcion:\n1. Agregar Registro\n2. Consultar registro de alumno \n3. Eliminar registro\n4. Salir");                   //Ventana de opciones del programa
+   /// var opcion = prompt("Seleccione una opcion:\n1. Agregar Registro\n2. Consultar registro de alumno \n3. Eliminar registro\n4. Salir");                   //Ventana de opciones del programa
 
 //Se declara este if para dar a elegir al usuario la opcion que quiera
-//if(opcion === "1"){                 
-  //  incluir();
-//}else if(opcion === "2"){
- //   consultar();
-//}else if(opcion === "3"){
-//    eliminarAlumno();
-//}else if(opcion === "4"){
-//    alert("Salir del sistema");
-//} else{
-//    alert("Opcion invalida, elige otra");
-//} 
+///if(opcion === "1"){                 
+  ///  incluir();
+///}else if(opcion === "2"){
+ ///   consultar();
+///}else if(opcion === "3"){
+///    eliminarAlumno();
+///}else if(opcion === "4"){
+///    alert("Salir del sistema");
+///} else{
+///    alert("Opcion invalida, elige otra");
+///} 
 
 //Esta variable nos permite elegir si hacemos otra accion o cerramos el ciclo
-//var continuar = prompt("¿Deseas hacer otra accion? (S/N)");                 
+///var continuar = prompt("¿Deseas hacer otra accion? (S/N)");                 
  
 //while que se encarga de cerrar el ciclo
-//} while(continuar === "s");
-//
+///} while(continuar === "s");
 })
-
-
-
-
 
