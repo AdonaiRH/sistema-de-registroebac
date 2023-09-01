@@ -1,5 +1,21 @@
+document.addEventListener("DOMContentLoaded", function(){
+
+
+
 //Imprime un mensaje de bienvenida en la consola
 console.log("Sistema EBAC de Registro de Alumnos");
+
+var form = document.getElementById("registration-form");
+var addButton = document.getElementById("add-button");
+var consultButton = document.getElementById("consult-button");
+var deleteButton = document.getElementById("delete-button");
+
+form.addEventListener("submit",incluir);
+
+consultButton.addEventListener("click",consultar);
+
+deleteButton.addEventListener("click", eliminarAlumno);
+
 
 //Se define un arreglo de registro con datos de alumnos en EBAC
 var registro = [                    
@@ -16,11 +32,11 @@ var registro = [
 function incluir(){                 
 
     //Se le solicita informacion al usuario para el registro de un nuevo alumno
-    var nombre = prompt("Ingresa el nombre del nuevo alumno");
-    var zonaResidencia = prompt("Ingresa la zona de residencia del alumno");
-    var edad = prompt("Edad");
-    var nombrePrograma = prompt("Programa a estudiar");
-    var email = prompt("Correo electrónico");
+    var nombre = document.getElementById("name-input"); 
+    var zonaResidencia = document.getElementById("locality-input");
+    var edad = document.getElementById("age-input");
+    var nombrePrograma = document.getElementById("course-input");
+    var email = document.getElementById("email-input");
 
     //Crea un objeto que se llama nuevoAlumno con los datos ingresados
     var nuevoAlumno = {nombre: nombre, edad: edad, zonaResidencia: zonaResidencia, nombrePrograma: nombrePrograma, email: email};
@@ -34,15 +50,17 @@ function incluir(){
 function consultar(){           
     
     //Este ciclo for itera sobre cada uno de los registros del arreglo
-    for(var i = 0; i < registro.length; i++){
+    ///for(var i = 0; i < registro.length; i++){
 
         //Esta lista de console.log permite ver al usuario el registro en la consola
-        console.log("Nombre: " + registro[i].nombre);
-        console.log("Edad: " + registro[i].edad);
-        console.log("Zona de residencia: " + registro[i].zonaResidencia);
-        console.log("Nombre del programa: " + registro[i].nombrePrograma);
-        console.log("Email: " + registro[i].email);
-      };
+      ///  console.log("Nombre: " + registro[i].nombre);
+        ///console.log("Edad: " + registro[i].edad);
+        ///console.log("Zona de residencia: " + registro[i].zonaResidencia);
+        ///console.log("Nombre del programa: " + registro[i].nombrePrograma);
+        ///console.log("Email: " + registro[i].email);
+      ///};
+      console.table(registro);
+
 }
 
 //Esta funcion permite generar un nuevo arreglo que no contenga la informacion del alumno deseado
@@ -57,30 +75,31 @@ function eliminarAlumno(){
 }
 
 //Ciclo do while permite repetir el menu cuando es indicado hasta que no se cumpla la condicion
-do{
+//do{
 
     //Variable que toma la eleccion del usuario para ejecutar la funcion indicada
     var opcion = prompt("Seleccione una opcion:\n1. Agregar Registro\n2. Consultar registro de alumno \n3. Eliminar registro\n4. Salir");                   //Ventana de opciones del programa
 
 //Se declara este if para dar a elegir al usuario la opcion que quiera
-if(opcion === "1"){                 
-    incluir();
-}else if(opcion === "2"){
-    consultar();
-}else if(opcion === "3"){
-    eliminarAlumno();
-}else if(opcion === "4"){
-    alert("Salir del sistema");
-} else{
-    alert("Opcion invalida, elige otra");
-} 
+//if(opcion === "1"){                 
+  //  incluir();
+//}else if(opcion === "2"){
+ //   consultar();
+//}else if(opcion === "3"){
+//    eliminarAlumno();
+//}else if(opcion === "4"){
+//    alert("Salir del sistema");
+//} else{
+//    alert("Opcion invalida, elige otra");
+//} 
 
 //Esta variable nos permite elegir si hacemos otra accion o cerramos el ciclo
-var continuar = prompt("¿Deseas hacer otra accion? (S/N)");                 
+//var continuar = prompt("¿Deseas hacer otra accion? (S/N)");                 
  
 //while que se encarga de cerrar el ciclo
-} while(continuar === "s");
-
+//} while(continuar === "s");
+//
+})
 
 
 
